@@ -13,7 +13,6 @@
       height: 100%;
       overflow-x: hidden;
       text-align: center;
-      padding-bottom: 10%;
     }
 
     body {
@@ -57,7 +56,7 @@
       margin-top: 20px;
     }
 
-    .photo, .message {
+    .photo, .message, #galleryBlock {
       display: none;
       opacity: 0;
       transition: opacity 1s ease-in-out;
@@ -126,10 +125,18 @@
       outline: none;
     }
 
+    #galleryBlock img {
+      width: 30%;
+      border-radius: 12px;
+    }
+
     @media (max-width: 480px) {
       .card {
         margin: 40px 10px;
         padding: 20px;
+      }
+      #galleryBlock img {
+        width: 45%;
       }
     }
   </style>
@@ -155,6 +162,19 @@
       </p>
       <p style="font-style:italic;color:#4b5563;" contenteditable="true">— Your AlpineTech Family</p>
     </div>
+
+    <!-- Gallery -->
+    <div id="galleryBlock">
+      <h3 style="text-align:center; color:#1f2937; margin-bottom: 20px;">🎈 Moments from the Celebration</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+        <img src="https://i.postimg.cc/V614yxc7/Whats-App-Image-2025-07-11-at-5-06-16-PM.jpg" />
+        <img src="https://i.postimg.cc/jSpZcW3Y/Whats-App-Image-2025-07-11-at-5-06-17-PM.jpg" />
+        <img src="https://i.postimg.cc/pLhsKQZB/Whats-App-Image-2025-07-11-at-5-06-17-PM-1.jpg" />
+        <img src="https://i.postimg.cc/W40SH2xF/Whats-App-Image-2025-07-11-at-5-06-16-PM-1.jpg" />
+        <img src="https://i.postimg.cc/sxHJh1G8/Whats-App-Image-2025-07-11-at-5-06-13-PM-1.jpg" />
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -184,7 +204,6 @@
       popper.innerText = '🎉';
       popper.style.left = Math.random() * window.innerWidth + 'px';
       popper.style.top = (Math.random() * window.innerHeight / 2) + 'px';
-      popper.style.transform = `rotate(${Math.random() * 360}deg)`;
       document.body.appendChild(popper);
       setTimeout(() => popper.remove(), 2000);
     }
@@ -202,6 +221,13 @@
         document.getElementById('photoBlock').style.opacity = 1;
         document.getElementById('messageBlock').style.opacity = 1;
       }, 300);
+
+      // Show gallery after a short delay
+      setTimeout(() => {
+        const gallery = document.getElementById('galleryBlock');
+        gallery.style.display = 'block';
+        setTimeout(() => gallery.style.opacity = 1, 100);
+      }, 1500);
 
       triggerSkyFireworks();
     }
