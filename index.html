@@ -3,124 +3,145 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday - AlpineTech</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>AlpineTech Birthday Celebration</title>
   <style>
     body {
-      font-family: 'Inter', sans-serif;
-      background: #f0f4ff;
       margin: 0;
-      padding: 40px;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4ff;
+      overflow: hidden;
+      text-align: center;
     }
+
     .card {
       max-width: 650px;
-      margin: auto;
-      background: #ffffff;
+      margin: 80px auto;
+      padding: 30px;
+      background: white;
       border-radius: 16px;
-      padding: 40px 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 4px solid #ef4444;
+      border: 3px solid #ef4444;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       position: relative;
+      z-index: 2;
     }
-    .logo-top {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 120px;
-    }
-    .cake {
-      width: 120px;
-      margin: 30px auto 20px;
-      display: block;
-    }
-    .emp-photo-wrapper {
-      text-align: center;
+
+    .btn {
+      background: #2563eb;
+      color: white;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
       margin-top: 20px;
     }
-    .emp-photo {
-      width: 300px;
-      height: 300px;
+
+    .photo, .message {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      margin-top: 20px;
+    }
+
+    .photo img {
+      width: 150px;
+      height: 150px;
       border-radius: 50%;
-      border: 3px solid #3b82f6;
+      border: 4px solid #3b82f6;
       object-fit: cover;
       cursor: pointer;
     }
-    h1 {
-      text-align: center;
-      font-size: 36px;
-      color: #b91c1c;
-      margin: 20px 0;
+
+    .balloon {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: red;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: floatUp 6s linear infinite;
+      opacity: 0;
     }
-    .highlight {
-      color: #7c3aed;
-      font-weight: 700;
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
     }
-    p {
-      font-size: 17px;
-      color: #374151;
-      line-height: 1.6;
-      text-align: center;
+
+    @keyframes floatUp {
+      0% { transform: translateY(100vh); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
     }
-    .footer {
-      font-size: 15px;
-      color: #4b5563;
-      margin-top: 30px;
-      text-align: center;
-      font-style: italic;
+
+    @keyframes explode {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(5); opacity: 0; }
     }
-    .balloons {
-      margin-top: 25px;
-      font-size: 20px;
-      text-align: center;
-    }
-    input[type="file"] {
-      display: none;
+
+    [contenteditable=true] {
+      outline: none;
     }
   </style>
 </head>
 <body>
 
   <div class="card">
-    <!-- Logo -->
-    <img src="https://i.postimg.cc/Pqy133Sn/alpinetech-logo.jpg" alt="AlpineTech Logo" class="logo-top" />
+    <h1 contenteditable="true">Happy Birthday Bhavya🎉</h1>
+    <p>Click the button below and watch the celebration begin!</p>
+    <button class="btn" onclick="celebrate()">Celebrate Now</button>
 
-    <!-- Cake GIF -->
-    <img src="https://www.funimada.com/assets/images/cards/big/bday-821.gif" alt="Birthday Cake" class="cake" />
-
-    <!-- Employee Photo Upload -->
-    <div class="emp-photo-wrapper">
-      <label for="photoUpload">
-        <img id="employeePhoto" src="https://via.placeholder.com/130?text=Photo" alt="Click Here to add Employee Photo" class="emp-photo" title="Click to upload photo" />
-      </label>
-      <input type="file" id="photoUpload" accept="image/*" onchange="loadPhoto(event)" />
+    <!-- Employee Photo (editable URL via right-click/Inspect for advanced HR users) -->
+    <div class="photo" id="photoBlock">
+      <img src="https://i.postimg.cc/13HcPhgj/Whats-App-Image-2025-07-11-at-12-49-44-PM.jpg" alt="Employee Photo" />
     </div>
 
-    <!-- Headline -->
-    <h1 contenteditable="true">Happy Birthday 🎉</h1>
-
-    <!-- Wishes -->
-    <p><strong>Dear <span class="highlight" contenteditable="true">[Employee Name]</span>,</strong></p>
-
-    <p contenteditable="true">
-      On your special day, we celebrate more than just your birthday — we celebrate *you*. Your dedication, creativity, and positive energy make AlpineTech a better place every single day.
-    </p>
-
-    <p contenteditable="true">
-      May your year be filled with exciting new challenges, personal growth, and endless joy — both at work and in life. You deserve every moment of happiness and success that comes your way.
-    </p>
-
-    <p class="footer">With warmest wishes,  
-      <br><strong>— Your AlpineTech Family 💙</strong></p>
-
-    <!-- Balloons -->
-    <div class="balloons">🎈🎊🎁🎂✨🎉🎈</div>
+    <!-- Birthday Message -->
+    <div class="message" id="messageBlock">
+      <h2 style="color:#7c3aed;" contenteditable="true">Wishing You a Day Full of Joy, Bhavya!</h2>
+      <p style="font-size:17px;color:#374151;" contenteditable="true">
+        May your year be filled with exciting challenges, big wins, and beautiful moments.
+        You bring energy and excellence to everything you do — thank you for being you! 💙
+      </p>
+      <p style="font-style:italic;color:#4b5563;" contenteditable="true">— Your AlpineTech Family</p>
+    </div>
   </div>
 
-  <!-- JavaScript for photo preview -->
   <script>
-    function loadPhoto(event) {
-      const image = document.getElementById('employeePhoto');
-      image.src = URL.createObjectURL(event.target.files[0]);
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.background = `hsl(${Math.random() * 360}, 70%, 60%)`;
+      balloon.style.animationDuration = (4 + Math.random() * 3) + 's';
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 7000);
+    }
+
+    function createFirework() {
+      const fw = document.createElement('div');
+      fw.className = 'firework';
+      fw.style.left = Math.random() * window.innerWidth + 'px';
+      fw.style.top = Math.random() * window.innerHeight / 2 + 'px';
+      fw.style.background = `hsl(${Math.random() * 360}, 100%, 60%)`;
+      document.body.appendChild(fw);
+      setTimeout(() => fw.remove(), 1000);
+    }
+
+    function celebrate() {
+      for (let i = 0; i < 40; i++) {
+        setTimeout(createBalloon, i * 150);
+        if (i % 3 === 0) setTimeout(createFirework, i * 150);
+      }
+
+      document.getElementById('photoBlock').style.display = 'block';
+      document.getElementById('messageBlock').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('photoBlock').style.opacity = 1;
+        document.getElementById('messageBlock').style.opacity = 1;
+      }, 300);
     }
   </script>
 
